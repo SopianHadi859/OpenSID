@@ -6,41 +6,42 @@
   }
 </style>
 
-<form class='contact_form' id="validasi" action="<?= site_url()?>lapor_web/insert" method="POST" enctype="multipart/form-data">
+<form class="contact_form" id="validasi" action="<?= site_url()?>lapor_web/insert" method="POST" enctype="multipart/form-data">
 
-  <div class="box-header with-border">
+<div class="box-header with-border">
     <span style="font-size: x-large"><strong>LAYANAN PERMOHONAN SURAT</strong></span>
-    <button type="button" class="btn btn-primary pull-right" value="Kirim" id="kirim"><i class="fa fa-sign-in"></i>Kirim</button>
+    <button type="submit" class="btn btn-primary pull-right" value="Kirim" id="kirim"><i class="fa fa-sign-in"></i>Kirim</button>
   </div>
-  <div class="artikel layanan">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="form" >
-      <input class="form-group" type="hidden" name="owner" value="<?= $_SESSION['nama']?>"/>
-      <input class="form-group" type="hidden" readonly="readonly" name="email" value="<?= $_SESSION['nik']?>"/>
-      <tr>
-        <td>Jenis Surat Yang Dimohon</td>
-        <td>
-          <select class="form-group" name="nama_surat" id="nama_surat">
+
+  <div class="box-body">
+    <div class="form form-horizontal">
+      <input class="form-control" type="hidden" name="owner" value="<?= $_SESSION['nama']?>"/>
+      <input class="form-control" type="hidden" readonly="readonly" name="email" value="<?= $_SESSION['nik']?>"/>
+      <div class="form-group">
+        <label for="nama_surat" class="col-sm-3 control-label">Jenis Surat Yang Dimohon</label>
+        <div class="col-sm-6 col-lg-8">
+          <select class="form-control required input-sm" name="nama_surat" id="nama_surat">
             <option> -- Pilih Jenis Surat -- </option>
             <?php foreach ($menu_surat2 AS $data): ?>
               <option value="<?= $data['nama']?>"><?= $data['nama']?></option>
             <?php endforeach;?>
           </select>
-        </td>
-      </tr>
-    </tr>
-    <tr>
-      <td>Keterangan Tambahan</td>
-      <td>
-        <textarea name="komentar" rows="1" cols="46" placeholder="Ketik di sini untuk memberikan keterangan tambahan."></textarea>
-      </td>
-    </tr>
-    <tr>
-      <td>Nomor HP Aktif</td>
-      <td>
-        <input class="form-group" type="text" name="hp" placeholder="ketik no. HP" size="14"/>
-      </td>
-    </tr>
-  </table>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="keterangan_tambahan" class="col-sm-3 control-label">Keterangan Tambahan</label>
+        <div class="col-sm-8 col-lg-8">
+          <textarea class="form-control input-sm" name="komentar" rows="3" cols="46" placeholder="Ketik di sini untuk memberikan keterangan tambahan." ></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="no_hp_aktif" class="col-sm-3 control-label">No. HP aktif</label>
+        <div class="col-sm-6 col-lg-8">
+          <input class="form-control input-sm" type="text" name="hp" placeholder="ketik no. HP" size="14"/>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="box box-info" style="margin-top: 10px;">
     <div class="box-header with-border">
@@ -124,8 +125,7 @@
     </form>
   </div>
 
-  </form>
-  </div>
+</form>
 
 <script type='text/javascript'>
   $(document).ready(function(){
