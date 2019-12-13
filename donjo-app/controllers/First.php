@@ -522,7 +522,8 @@ class First extends Web_Controller {
 	public function ajax_table_surat_permohonan()
   {
 		$data = $this->penduduk_model->list_dokumen($_SESSION['id']);
-		for ($i=0; $i < count($data); $i++) {
+		for ($i=0; $i < count($data); $i++) 
+		{
 			$list_dokumen[$i][] = $data[$i]['no'];
 			$list_dokumen[$i][] = $data[$i]['nama'];
 			$list_dokumen[$i][] = urlencode($data[$i]['satuan']);
@@ -530,6 +531,7 @@ class First extends Web_Controller {
 			$list_dokumen[$i][] = $data[$i]['id'];
 		}
 		$list['data'] = count($list_dokumen) > 0 ? $list_dokumen : array();
+		
     echo json_encode($list);
 	}
 	
@@ -539,7 +541,8 @@ class First extends Web_Controller {
 		$this->session->unset_userdata('error_msg');
 		$success_msg = 'Berhasil menyimpan data';
 
-		if ($_SESSION['id']) {
+		if ($_SESSION['id']) 
+		{
 			$id_dokumen = $this->input->post('id');
 			unset($_POST['id']);
 
@@ -554,23 +557,27 @@ class First extends Web_Controller {
 		} 
 		else 
 			$data['message'] = 'You are not authorized';
+
 		echo json_encode($data);
 	}
 
 	public function ajax_get_dokumen_pendukung()
 	{
-		if($_SESSION['id']) {
+		if($_SESSION['id']) 
+		{
 			$id_dokumen = $this->input->post('id_dokumen');
 			$data = $this->web_dokumen_model->get_dokumen($id_dokumen);
 		} 
 		else
 			$data['message'] = 'You are not authorized';
+
 		echo json_encode($data);
 	}
 
 	public function ajax_hapus_dokumen_pendukung()
 	{
-		if ($_SESSION['id']) {
+		if ($_SESSION['id']) 
+		{
 			$id_dokumen = $this->input->post('id_dokumen');
 			if ($id_dokumen) 
 				$this->web_dokumen_model->delete($id_dokumen);
@@ -578,6 +585,7 @@ class First extends Web_Controller {
 		} 
 		else
 			$data['message'] = 'You are not authorized';
+
 		echo json_encode($data);
 	}
 
