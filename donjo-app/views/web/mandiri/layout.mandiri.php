@@ -94,7 +94,8 @@
   </div>
 </div>  
 
-  <script>
+<script>
+  $(document).ready(function() {
     var alamat = "<?= site_url('lapor_web/insert') ?>";
     var m = <?= $m;  ?>
 
@@ -128,13 +129,14 @@
         success: function(hasil) {
           if (hasil['sukses'] == 1) {
             $('#lapor_modal').modal('hide');
-            alert(hasil['pesan'])
+            show_alert('green', 'Sukses', hasil['pesan']);
           } else {
             $('#cek').addClass('has-error');
-            $('#error').html(hasil['pesan']);
+            show_alert('red', 'Gagal', hasil['pesan']);
           }
 
         }
       })
-    })
-  </script>
+    });
+  })
+</script>
