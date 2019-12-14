@@ -8,7 +8,7 @@ class Surat_mohon extends Admin_Controller {
 		session_start();
 		$this->load->model('header_model');
 		$this->load->model('lapor_model');
-		$this->modul_ini = 97;
+		$this->modul_ini = 4;
 	}
 
 	public function clear()
@@ -40,8 +40,8 @@ class Surat_mohon extends Admin_Controller {
 		$data['keyword'] = $this->lapor_model->autocomplete();
 
 		$header = $this->header_model->get_data();
-		$nav['act'] = 97;
-		$nav['act_sub'] = 44;
+		$nav['act'] = 4;
+		$nav['act_sub'] = 97;
 
 		$this->load->view('header', $header);
 		$this->load->view('nav', $nav);
@@ -66,8 +66,8 @@ class Surat_mohon extends Admin_Controller {
 		}
 
 		$header = $this->header_model->get_data();
-		$nav['act'] = 97;
-		$nav['act_sub'] = 44;
+		$nav['act'] = 4;
+		$nav['act_sub'] = 97;
 
 		$this->load->view('header', $header);
 		$this->load->view('nav', $nav);

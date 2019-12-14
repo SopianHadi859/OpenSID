@@ -11,10 +11,10 @@
 </script>
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>List Dokumen Permohonan Surat</h1>
+		<h1>Daftar Dokumen Persyaratan Surat</h1>
 		<ol class="breadcrumb">
 			<li><a href="<?= site_url('hom_sid')?>"><i class="fa fa-home"></i> Home</a></li>
-			<li class="active">List Dokumen Permohonan Surat</li>
+			<li class="active">Daftar Dokumen Persyaratan Surat</li>
 		</ol>
 	</section>
 	<section class="content" id="maincontent">
@@ -22,7 +22,7 @@
 			<div class="col-md-12">
 				<div class="box box-info">
 					<div class="box-header with-border">
-						<a href="<?= site_url('surat_mohon/form')?>" class="btn btn-social btn-flat btn-success btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><i class="fa fa-plus"></i> Tambah List Dokumen</a>
+						<a href="<?= site_url('surat_mohon/form')?>" class="btn btn-social btn-flat btn-success btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><i class="fa fa-plus"></i> Tambah Dokumen Persyaratan</a>
 						<a href="#confirm-delete" title="Hapus Data" onclick="deleteAllBox('mainform','<?=site_url("surat_mohon/delete_all/$p/$o")?>')" class="btn btn-social btn-flat btn-danger btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block hapus-terpilih"><i class='fa fa-trash-o'></i> Hapus Data Terpilih</a>
 					</div>
 					<div class="box-body">

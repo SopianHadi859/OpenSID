@@ -82,15 +82,15 @@ class Migrasi_1912_ke_2001 extends CI_model {
     $data = array();
     $data[] = array(
       'id'=>'97',
-      'modul'=>'List Dokumen Permohonan',
-      'url'=>'surat_mohon',
-      'aktif'=>'1',
-      'ikon'=>'fa fa-book',
-      'urut'=>'5',
-      'level'=>'2',
-      'hidden'=>'0',
-      'ikon_kecil'=>'',
-      'parent'=>4);
+      'modul' => 'Daftar Persyaratan',
+      'url' => 'surat_mohon',
+      'aktif' => '1',
+      'ikon' => 'fa fa-book',
+      'urut' => '5',
+      'level' => '2',
+      'hidden' => '0',
+      'ikon_kecil' => '',
+      'parent' => 4);
 
     foreach ($data as $modul)
     {

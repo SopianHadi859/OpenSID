@@ -1,11 +1,11 @@
 
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Pengaturan Dokumen Permohonan Surat</h1>
+		<h1>Pengaturan Dokumen Persyaratan Surat</h1>
 		<ol class="breadcrumb">
 			<li><a href="<?= site_url('hom_sid')?>"><i class="fa fa-home"></i> Home</a></li>
-			<li><a href="<?= site_url('surat_mohon')?>"> Dokumen Permohonan Surat</a></li>
-			<li class="active">Pengaturan Dokumen Permohonan Surat</li>
+			<li><a href="<?= site_url('surat_mohon')?>"> Dokumen Persyaratan Surat</a></li>
+			<li class="active">Pengaturan Dokumen Persyaratan Surat</li>
 		</ol>
 	</section>
 	<section class="content">
@@ -14,7 +14,7 @@
 				<div class="box box-info">
 					<div class="box-header with-border">
 						<a href="<?=site_url("surat_mohon")?>" class="btn btn-social btn-flat btn-info btn-sm btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
-							<i class="fa fa-arrow-circle-left "></i>Kembali ke Dokumen Permohonan Surat
+							<i class="fa fa-arrow-circle-left "></i>Kembali ke Dokumen Persyaratan Surat
            	</a>
 					</div>
 					<div class="box-body">
