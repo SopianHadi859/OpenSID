@@ -522,7 +522,7 @@ class First extends Web_Controller {
 	public function ajax_table_surat_permohonan()
   {
 		$data = $this->penduduk_model->list_dokumen($_SESSION['id']);
-		for ($i=0; $i < count($data); $i++) 
+		for ($i=0; $i < count($data); $i++)
 		{
 			$list_dokumen[$i][] = $data[$i]['no'];
 			$list_dokumen[$i][] = $data[$i]['nama'];
@@ -531,31 +531,31 @@ class First extends Web_Controller {
 			$list_dokumen[$i][] = $data[$i]['id'];
 		}
 		$list['data'] = count($list_dokumen) > 0 ? $list_dokumen : array();
-		
+
     echo json_encode($list);
 	}
-	
+
 	public function ajax_upload_dokumen_pendukung()
 	{
 		$this->session->unset_userdata('success');
 		$this->session->unset_userdata('error_msg');
 		$success_msg = 'Berhasil menyimpan data';
 
-		if ($_SESSION['id']) 
+		if ($_SESSION['id'])
 		{
 			$id_dokumen = $this->input->post('id');
 			unset($_POST['id']);
 
 			if ($id_dokumen)
 				$this->web_dokumen_model->update($id_dokumen);
-			else 
+			else
 				$this->web_dokumen_model->insert();
 
 			$data['success'] = $this->session->userdata('success');
 			$data['message'] = $data['success'] == -1 ? $this->session->userdata('error_msg') : $success_msg;
-				
-		} 
-		else 
+
+		}
+		else
 			$data['message'] = 'You are not authorized';
 
 		echo json_encode($data);
@@ -563,11 +563,11 @@ class First extends Web_Controller {
 
 	public function ajax_get_dokumen_pendukung()
 	{
-		if($_SESSION['id']) 
+		if($_SESSION['id'])
 		{
 			$id_dokumen = $this->input->post('id_dokumen');
 			$data = $this->web_dokumen_model->get_dokumen($id_dokumen);
-		} 
+		}
 		else
 			$data['message'] = 'You are not authorized';
 
@@ -576,17 +576,24 @@ class First extends Web_Controller {
 
 	public function ajax_hapus_dokumen_pendukung()
 	{
-		if ($_SESSION['id']) 
+		if ($_SESSION['id'])
 		{
 			$id_dokumen = $this->input->post('id_dokumen');
-			if ($id_dokumen) 
+			if ($id_dokumen)
 				$this->web_dokumen_model->delete($id_dokumen);
 			$data['success'] = $this->session->userdata('success') ? : '1';
-		} 
+		}
 		else
 			$data['message'] = 'You are not authorized';
 
 		echo json_encode($data);
 	}
+
+	public function ajax_table_surat_permohonan1()
+  {
+    $nama_surat = $this->input->post('nama_surat');
+    $data = $this->lapor_model->get_current_surat_nama($nama_surat);
+    echo json_encode($data);
+  }
 
 }
