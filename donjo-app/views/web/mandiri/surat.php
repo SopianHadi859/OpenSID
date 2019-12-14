@@ -13,7 +13,9 @@
 
   <div class="box-header with-border">
     <span style="font-size: x-large"><strong>LAYANAN PERMOHONAN SURAT</strong></span>
-    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-sign-in"></i>Kirim</button>
+    <button type="button" class="btn btn-primary pull-right" value="Kirim" id="kirim"><i class="fa fa-sign-in"></i>Kirim</button>
+    <input class="form-group" type="hidden" name="owner" value="<?= $_SESSION['nama']?>"/>
+    <input class="form-group" type="hidden" readonly="readonly" name="email" value="<?= $_SESSION['nik']?>"/>
   </div>
 
   <div class="box-body">
@@ -84,8 +86,8 @@
             <th>Aksi</th>
           </tr>
         </thead>
-        <tbody id="list_dokumen">        
-        </tbody>        
+        <tbody id="list_dokumen">
+        </tbody>
       </table>
     </div>
   </div>
@@ -134,4 +136,45 @@
     </div>
   </div>
 </div>
+<script type='text/javascript'>
+  $(document).ready(function(){
+    $('#surat-table').DataTable({
+    	"dom": 'rt<"bottom"p><"clear">',
+    	"destroy": true,
+      "paging": false,
+      "ordering": false
+    });
 
+    $('#nama_surat').change(function(){
+      var nama_surat = $(this).val();
+      var url = "<?= site_url('first/ajax_table_surat_permohonan1')?>";
+
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+          nama_surat: nama_surat
+        },
+        dataType: "JSON",
+        success: function(data)
+        {
+          var html;
+          if (data.length == 0)
+          {
+            html = "<tr><td colspan='3' align='center'>No Data Available</td></tr>";
+          }
+          for (var i = 0; i < data.length; i++)
+          {
+            html += "<tr>"+"<td>"+data[i].ref_surat_nama+"</td>";
+          }
+          $('#tbody-dokumen').html(html);
+        },
+        error: function(err, jqxhr, errThrown)
+        {
+          console.log(err);
+        }
+      })
+   });
+
+ });
+ </script>
