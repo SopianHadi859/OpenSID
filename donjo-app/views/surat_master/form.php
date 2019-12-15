@@ -50,6 +50,12 @@
 												</div>
 											</div>
 										</div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label" >Disediakan pada Layanan Mandiri</label>
+											<div class="col-sm-7">
+												<input type="checkbox" name="mandiri" style="font-size: larger;" <?php selected($surat_master['mandiri'], 1, 1)?>/>
+											</div>
+										</div>
 									</div>
 									<?php if (strpos($form_action, 'insert') !== false): ?>
 										<div class="col-sm-12">

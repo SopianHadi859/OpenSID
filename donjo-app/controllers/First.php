@@ -157,7 +157,7 @@ class First extends Web_Controller {
 
 		$data = $this->includes;
 		$data['p'] = $p;
-		$data['menu_surat2'] = $this->surat_model->list_surat2();
+		$data['menu_surat_mandiri'] = $this->surat_model->list_surat_mandiri();
 		$data['m'] = $m;
 
 		$this->_get_common_data($data);

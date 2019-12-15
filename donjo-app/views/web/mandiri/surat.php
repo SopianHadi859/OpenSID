@@ -25,7 +25,7 @@
         <div class="col-sm-6 col-lg-8">
           <select class="form-control required input-sm" name="nama_surat" id="nama_surat">
             <option> -- Pilih Jenis Surat -- </option>
-            <?php foreach ($menu_surat2 AS $data): ?>
+            <?php foreach ($menu_surat_mandiri AS $data): ?>
               <option value="<?= $data['nama']?>"><?= $data['nama']?></option>
             <?php endforeach;?>
           </select>

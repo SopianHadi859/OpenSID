@@ -47,7 +47,6 @@ class Migrasi_1912_ke_2001 extends CI_model {
 		    (11, 'Surat Keterangan Kematian dari Kepala Desa/Kelurahan'),
 		    (12, 'Surat imigrasi / STMD (Surat Tanda Melapor Diri)');
 	    ";
-
 	    $this->db->query($query);
 	  }
 
@@ -107,7 +106,14 @@ class Migrasi_1912_ke_2001 extends CI_model {
       ikon_kecil = VALUES(ikon_kecil),
       parent = VALUES(parent)";
       $this->db->query($sql);
-    }		
+    }
+
+    // Tambah kolom tanda surat yg tersedia untuk layanan mandiri
+		if (!$this->db->field_exists('mandiri','tweb_surat_format'))
+		{
+			$this->db->query("ALTER TABLE tweb_surat_format ADD mandiri tinyint(1) default 0");
+		}
+			
 	}
 
 	private function siskeudes_2019()
