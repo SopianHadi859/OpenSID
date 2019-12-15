@@ -1,5 +1,6 @@
 <style type="text/css">
   div.modal-header.bg-primary { padding: 10px; }
+  .admin { display: none !important; }
 </style>
 
 <?php $this->load->view('web/mandiri/header_mandiri.php') ?>
@@ -99,8 +100,11 @@
 
 <script>
   $(document).ready(function() {
+    // Di form surat ubah isian admin menjadi disabled
+    $(".admin-edit").attr('disabled', true);
+
     var alamat = "<?= site_url('lapor_web/insert') ?>";
-    var m = <?= $m;  ?>
+    var m = <?= $m ?: 0;  ?>
 
     if (m == 3) {
       $('#lapor_modal').modal('show')

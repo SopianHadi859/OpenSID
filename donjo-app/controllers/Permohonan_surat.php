@@ -24,7 +24,7 @@ class Permohonan_surat extends Web_Controller {
 		$url = $data['url'];
 
 		$data['list_dokumen'] = $this->penduduk_model->list_dokumen($_SESSION['id']);
-		$data['individu'] = $this->surat_model->get_penduduk($data['nik']);
+		$data['individu'] = $this->surat_model->get_penduduk($_SESSION['id']);
 		$data['anggota'] = $this->keluarga_model->list_anggota($data['individu']['id_kk']);
 		$this->get_data_untuk_form($url, $data);
 
