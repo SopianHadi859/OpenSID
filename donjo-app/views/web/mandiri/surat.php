@@ -9,13 +9,13 @@
   const LOKASI_DOKUMEN = '<?= base_url().LOKASI_DOKUMEN ?>';
 </script>
 
-<form class="contact_form" id="validasi" action="<?= site_url()?>" method="POST" enctype="multipart/form-data">
+<form class="contact_form" id="validasi" action="<?= site_url('permohonan_surat/form')?>" method="POST" enctype="multipart/form-data">
 
   <div class="box-header with-border">
     <span style="font-size: x-large"><strong>LAYANAN PERMOHONAN SURAT</strong></span>
-    <button type="button" class="btn btn-primary pull-right" value="Kirim" id="kirim"><i class="fa fa-sign-in"></i>Kirim</button>
-    <input class="form-group" type="hidden" name="owner" value="<?= $_SESSION['nama']?>"/>
-    <input class="form-group" type="hidden" readonly="readonly" name="email" value="<?= $_SESSION['nik']?>"/>
+    <button type="submit" class="btn btn-primary pull-right" value="Kirim" id="kirim"><i class="fa fa-sign-in"></i>Kirim</button>
+    <input type="hidden" name="pemohon" value="<?= $_SESSION['nama']?>"/>
+    <input type="hidden" readonly="readonly" name="nik" value="<?= $_SESSION['nik']?>"/>
   </div>
 
   <div class="box-body">
@@ -23,10 +23,10 @@
       <div class="form-group">
         <label for="nama_surat" class="col-sm-3 control-label">Jenis Surat Yang Dimohon</label>
         <div class="col-sm-6 col-lg-8">
-          <select class="form-control required input-sm" name="nama_surat" id="nama_surat">
+          <select class="form-control required input-sm" name="id_surat">
             <option> -- Pilih Jenis Surat -- </option>
             <?php foreach ($menu_surat_mandiri AS $data): ?>
-              <option value="<?= $data['nama']?>"><?= $data['nama']?></option>
+              <option value="<?= $data['id']?>"><?= $data['nama']?></option>
             <?php endforeach;?>
           </select>
         </div>
@@ -66,32 +66,33 @@
       </table>
     </div>
   </div>
+</form>
 
-  <div class="box box-info" style="margin-top: 10px;">
-    <div class="box-header with-border">
-      <h4 class="box-title">DOKUMEN / KELENGKAPAN PENDUDUK YANG TERSEDIA</h4>
-      <div class="box-tools">
-        <button type="button" class="btn btn-box-tool" data-toggle="collapse" data-target="#dokumen"><i class="fa fa-minus"></i></button>
-      </div>
-    </div>
-    <div class="box-body">
-      <button type="button" title="Tambah Dokumen" data-remote="false" data-toggle="modal" data-target="#modal" data-title="Tambah Dokumen" class="btn btn-social btn-flat bg-olive btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" id="tambah_dokumen"><i class='fa fa-plus'></i>Tambah Dokumen</button>
-      <table class="table table-striped table-bordered table-responsive" id="dokumen">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Dokumen</th>
-            <th>Berkas</th>
-            <th>Tanggal Upload</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody id="list_dokumen">
-        </tbody>
-      </table>
+<div class="box box-info" style="margin-top: 10px;">
+  <div class="box-header with-border">
+    <h4 class="box-title">DOKUMEN / KELENGKAPAN PENDUDUK YANG TERSEDIA</h4>
+    <div class="box-tools">
+      <button type="button" class="btn btn-box-tool" data-toggle="collapse" data-target="#dokumen"><i class="fa fa-minus"></i></button>
     </div>
   </div>
-</form>
+  <div class="box-body">
+    <button type="button" title="Tambah Dokumen" data-remote="false" data-toggle="modal" data-target="#modal" data-title="Tambah Dokumen" class="btn btn-social btn-flat bg-olive btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" id="tambah_dokumen"><i class='fa fa-plus'></i>Tambah Dokumen</button>
+    <table class="table table-striped table-bordered table-responsive" id="dokumen">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama Dokumen</th>
+          <th>Berkas</th>
+          <th>Tanggal Upload</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="list_dokumen">
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <div  class="modal fade" id="modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class='modal-dialog'>
     <div class='modal-content'>

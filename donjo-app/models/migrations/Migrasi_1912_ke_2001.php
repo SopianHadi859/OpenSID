@@ -113,6 +113,38 @@ class Migrasi_1912_ke_2001 extends CI_model {
 		{
 			$this->db->query("ALTER TABLE tweb_surat_format ADD mandiri tinyint(1) default 0");
 		}
+
+    // Tabel mendaftarkan permohonan surat dari layanan mandiri
+		if (!$this->db->table_exists('permohonan_surat'))
+		{
+	    $this->dbforge->add_field(array(
+				'id' => array(
+					'type' => 'INT',
+					'constraint' => 11,
+					'auto_increment' => TRUE
+				),
+				'id_pemohon' => array(
+					'type' => 'INT',
+					'constraint' => 11,
+					'null' => FALSE
+				),
+				'id_surat' => array(
+					'type' => 'INT',
+					'constraint' => 11,
+					'null' => FALSE
+				),
+				'isian_form' => array(
+					'type' => 'TEXT'
+				),
+				'status' => array(
+					'type' => 'TINYINT',
+					'constraint' => 1,
+					'default' => 0
+				)
+			));
+			$this->dbforge->add_key("id", true);
+			$this->dbforge->create_table("permohonan_surat", TRUE);
+		}
 			
 	}
 
