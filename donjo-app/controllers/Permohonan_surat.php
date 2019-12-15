@@ -12,11 +12,12 @@ class Permohonan_surat extends Web_Controller {
 		$this->load->model('config_model');
 		$this->load->model('referensi_model');
 		$this->load->model('penomoran_surat_model');
+		$this->load->model('permohonan_surat_model');
 	}
 
 	public function form()
 	{
-		$data = $_POST;
+		$data = $this->input->post();
 		$surat = $this->db->where('id', $data['id_surat'])
 			->get('tweb_surat_format')
 			->row_array();
@@ -35,14 +36,29 @@ class Permohonan_surat extends Web_Controller {
 		$this->load->view('web/mandiri/layout.mandiri.php', $data);
 	}
 
+	public function kirim()
+	{
+		$post = $this->input->post();
+		$data = array();
+		$data['id_pemohon'] = $post['nik'];
+		$data['id_surat'] = $post['id_surat'];
+		$data['isian_form'] = json_encode($post);
+		$this->permohonan_surat_model->insert($data);
+		redirect('first/mandiri/1/2');
+	}
+
 	private function get_data_untuk_form($url, &$data)
 	{
+		$this->load->model('pamong_model');
 		$data['surat_terakhir'] = $this->surat_model->get_last_nosurat_log($url);
 		$data['surat'] = $this->surat_model->get_surat($url);
 		$data['input'] = $this->input->post();
 		$data['input']['nomor'] = $data['surat_terakhir']['no_surat_berikutnya'];
 		$data['format_nomor_surat'] = $this->penomoran_surat_model->format_penomoran_surat($data);
 		$data['lokasi'] = $this->config_model->get_data();
+		$data['pamong'] = $this->surat_model->list_pamong();
+		$pamong_ttd = $this->pamong_model->get_ttd();
+		$pamong_ub = $this->pamong_model->get_ub();
 		$data_form = $this->surat_model->get_data_form($url);
 		if (is_file($data_form))
 			include($data_form);

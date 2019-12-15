@@ -13,7 +13,7 @@
 
   <div class="box-header with-border">
     <span style="font-size: x-large"><strong>LAYANAN PERMOHONAN SURAT</strong></span>
-    <button type="submit" class="btn btn-primary pull-right" value="Kirim" id="kirim"><i class="fa fa-sign-in"></i>Kirim</button>
+    <button type="submit" class="btn btn-primary pull-right" id="isi_form"><i class="fa fa-sign-in"></i>Isi Form</button>
     <input type="hidden" name="pemohon" value="<?= $_SESSION['nama']?>"/>
     <input type="hidden" readonly="readonly" name="nik" value="<?= $_SESSION['nik']?>"/>
   </div>

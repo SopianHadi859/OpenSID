@@ -40,6 +40,8 @@
                         $views_partial_layout = 'web/mandiri/layanan.php';
                     }
                   ?>
+                <?php else: ?>
+                  <?php $data['mandiri'] = 1; ?>
                 <?php endif; ?>
                 <?php $this->load->view($views_partial_layout, $data);?>
               </div>

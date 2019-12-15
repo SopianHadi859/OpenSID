@@ -22,6 +22,7 @@
 </script>
 
 <div class="form-group admin">
+	<input type="hidden" name="id_surat" value="<?= $surat['id']?>">
 	<label for="nomor" class="col-sm-3 control-label">Nomor Surat</label>
 	<div class="col-sm-4">
 		<input id="nomor" class="form-control input-sm digits required" type="text" placeholder="Nomor Surat" name="nomor" value="<?= $surat_terakhir['no_surat_berikutnya'];?>">
