@@ -142,10 +142,26 @@ class Migrasi_1912_ke_2001 extends CI_model {
 					'default' => 0
 				)
 			));
+			$this->dbforge->add_field("created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP");
+			$this->dbforge->add_field("updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP");
 			$this->dbforge->add_key("id", true);
 			$this->dbforge->create_table("permohonan_surat", TRUE);
 		}
-			
+		// Menu permohonan surat untuk operator
+		$modul = array(
+			'id' => '98',
+			'modul' => 'Permohonan Surat',
+			'url' => 'permohonan_surat_admin',
+			'aktif' => '1',
+			'ikon' => 'fa-files-o',
+			'urut' => '0',
+			'level' => '0',
+			'parent' => '14',
+			'hidden' => '0',
+			'ikon_kecil' => ''
+		);
+		$sql = $this->db->insert_string('setting_modul', $modul) . " ON DUPLICATE KEY UPDATE modul = VALUES(modul), url = VALUES(url), ikon = VALUES(ikon), parent = VALUES(parent)";
+		$this->db->query($sql);
 	}
 
 	private function siskeudes_2019()
