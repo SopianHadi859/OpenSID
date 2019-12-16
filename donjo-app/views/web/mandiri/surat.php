@@ -23,7 +23,7 @@
       <div class="form-group">
         <label for="nama_surat" class="col-sm-3 control-label">Jenis Surat Yang Dimohon</label>
         <div class="col-sm-6 col-lg-8">
-          <select class="form-control required input-sm" name="id_surat">
+          <select class="form-control required input-sm" name="id_surat" id="id_surat">
             <option> -- Pilih Jenis Surat -- </option>
             <?php foreach ($menu_surat_mandiri AS $data): ?>
               <option value="<?= $data['id']?>"><?= $data['nama']?></option>
@@ -146,8 +146,9 @@
       "ordering": false
     });
 
-    $('#nama_surat').change(function(){
-      var nama_surat = $(this).val();
+    $('#id_surat').change(function(){
+      var el = document.getElementById('id_surat');
+      var nama_surat = el.options[el.selectedIndex].innerHTML;
       var url = "<?= site_url('first/ajax_table_surat_permohonan1')?>";
 
       $.ajax({
