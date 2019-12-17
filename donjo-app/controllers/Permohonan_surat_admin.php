@@ -47,7 +47,7 @@ class Permohonan_surat_admin extends Admin_Controller {
 		$this->load->view('header', $header);
 		$this->load->view('nav', $nav);
 		$this->load->view('mandiri/permohonan_surat', $data);
-		$this->load->view('footer');		
+		$this->load->view('footer');
 	}
 
 	public function search()
@@ -74,7 +74,22 @@ class Permohonan_surat_admin extends Admin_Controller {
 		$this->load->view('header', $header);
 		$this->load->view('nav', $nav);
 		$this->load->view('mandiri/periksa_surat', $data);
-		$this->load->view('footer');		
+		$this->load->view('footer');
+	}
+
+	public function edit_status($id=0)
+	{
+		$data['list_status_permohonan'] = $this->referensi_model->list_kode_array(STATUS_PERMOHONAN);
+		$data['data'] = $this->permohonan_surat_model->list_data_status($id);
+		$data['form_action'] = site_url("permohonan_surat_admin/update_status/$id");
+		$this->load->view('mandiri/ajax_edit_status', $data);
+	}
+
+	public function update_status($id='')
+	{
+		$data = array('status' => $this->input->post('status'));
+		$this->permohonan_surat_model->update_status($id, $data);
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 }
