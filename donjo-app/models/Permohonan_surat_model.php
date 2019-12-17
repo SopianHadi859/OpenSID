@@ -42,6 +42,19 @@
 			}
 		}
 
+	private function filter_sql()
+	{
+		if (isset($_SESSION['filter']))
+		{
+			$kf = $_SESSION['filter'];
+			if ($kf == "0")
+				$filter_sql = "";
+			else
+				$filter_sql = " AND u.status = '".$kf."'";
+			return $filter_sql;
+		}
+	}
+
 	public function paging($p=1, $o=0)
 	{
 		$list_data_sql = $this->list_data_sql($log);
@@ -66,6 +79,7 @@
 			LEFT JOIN tweb_surat_format s ON u.id_surat = s.id
 			WHERE 1";
 		$sql .= $this->search_sql();
+		$sql .= $this->filter_sql();
 		return $sql;
 	}
 

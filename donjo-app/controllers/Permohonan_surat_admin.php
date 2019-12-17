@@ -6,8 +6,16 @@ class Permohonan_surat_admin extends Admin_Controller {
 	{
 		parent::__construct();
 		$this->load->model('permohonan_surat_model');
+		$this->load->model('referensi_model');
 		$this->load->model('header_model');
 		$this->modul_ini = 14;
+	}
+
+	public function clear()
+	{
+		unset($_SESSION['cari']);
+		unset($_SESSION['filter']);
+		redirect($this->controller);
 	}
 
 	public function index($p = 1, $o = 0)
@@ -27,6 +35,7 @@ class Permohonan_surat_admin extends Admin_Controller {
 			$_SESSION['per_page'] = $_POST['per_page'];
 		$data['per_page'] = $_SESSION['per_page'];
 
+		$data['list_status_permohonan'] = $this->referensi_model->list_kode_array(STATUS_PERMOHONAN);
 		$data['paging'] = $this->permohonan_surat_model->paging($p, $o);
 		$data['main'] = $this->permohonan_surat_model->list_data($o, $data['paging']->offset, $data['paging']->per_page);
 		$data['keyword'] = $this->permohonan_surat_model->autocomplete();
@@ -39,6 +48,24 @@ class Permohonan_surat_admin extends Admin_Controller {
 		$this->load->view('nav', $nav);
 		$this->load->view('mandiri/permohonan_surat', $data);
 		$this->load->view('footer');		
+	}
+
+	public function search()
+	{
+		$cari = $this->input->post('cari');
+		if ($cari != '')
+			$_SESSION['cari']=$cari;
+		else unset($_SESSION['cari']);
+		redirect($this->controller);
+	}
+
+	public function filter()
+	{
+		$filter = $this->input->post('filter');
+		if ($filter != '')
+			$_SESSION['filter'] = $filter;
+		else unset($_SESSION['filter']);
+		redirect($this->controller);
 	}
 
 	public function periksa($id)

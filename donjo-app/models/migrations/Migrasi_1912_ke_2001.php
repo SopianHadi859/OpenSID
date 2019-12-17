@@ -151,7 +151,7 @@ class Migrasi_1912_ke_2001 extends CI_model {
 		$modul = array(
 			'id' => '98',
 			'modul' => 'Permohonan Surat',
-			'url' => 'permohonan_surat_admin',
+			'url' => 'permohonan_surat_admin/clear',
 			'aktif' => '1',
 			'ikon' => 'fa-files-o',
 			'urut' => '0',

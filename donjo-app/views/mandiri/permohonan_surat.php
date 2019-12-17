@@ -24,13 +24,19 @@
 					<div class="box box-info">
 						<div class="box-body">
 							<div class="row">
-								<div class="col-sm-9">
-								</div>
 								<div class="col-sm-3">
-									<div class="input-group input-group-sm pull-right">
-										<input name="cari" id="cari" class="form-control" placeholder="Cari..." type="text" value="<?=html_escape($cari)?>" onkeypress="if (event.keyCode == 13){$('#'+'mainform').attr('action', '<?= site_url("mandiri/search")?>');$('#'+'mainform').submit();}">
+									<select class="form-control input-sm" name="filter" onchange="formAction('mainform', '<?=site_url("{$this->controller}/filter")?>')">
+										<option value="">Status</option>
+										<?php foreach ($list_status_permohonan AS $id => $nama): ?>
+											<option value="<?= $id?>" <?php if ($filter != '' and $filter == $id): ?>selected<?php endif ?>><?= $nama?></option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+								<div class="col-sm-3  pull-right">
+									<div class="input-group input-group-sm">
+										<input name="cari" id="cari" class="form-control" placeholder="Cari..." type="text" value="<?=html_escape($cari)?>" onkeypress="if (event.keyCode == 13){$('#'+'mainform').attr('action', '<?= site_url("{$this->controller}/search")?>');$('#'+'mainform').submit();}">
 										<div class="input-group-btn">
-											<button type="submit" class="btn btn-default" onclick="$('#'+'mainform').attr('action', '<?= site_url("mandiri/search")?>');$('#'+'mainform').submit();"><i class="fa fa-search"></i></button>
+											<button type="submit" class="btn btn-default" onclick="$('#'+'mainform').attr('action', '<?= site_url("{$this->controller}/search")?>');$('#'+'mainform').submit();"><i class="fa fa-search"></i></button>
 										</div>
 									</div>
 								</div>
@@ -59,8 +65,8 @@
 																	<tr>
 																		<td><?=$data['no']?></td>
 																		<td nowrap>
-																			<a href="<?=site_url("permohonan_surat_admin/periksa/$p/$o/$data[id]")?>" class="btn bg-green btn-flat btn-sm"  title="Periksa"><i class="fa fa-question-circle"></i></a>
-																			<a href="#" data-href="<?=site_url("permohonan_surat_admin/delete/$p/$o/$data[id]")?>" class="btn bg-maroon btn-flat btn-sm"  title="Hapus" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-trash-o"></i></a>
+																			<a href="<?=site_url("{$this->controller}/periksa/$p/$o/$data[id]")?>" class="btn bg-green btn-flat btn-sm"  title="Periksa"><i class="fa fa-question-circle"></i></a>
+																			<a href="#" data-href="<?=site_url("{$this->controller}/delete/$p/$o/$data[id]")?>" class="btn bg-maroon btn-flat btn-sm"  title="Hapus" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-trash-o"></i></a>
 																		</td>
 																		<td nowrap><?=$data['nik'];?></td>
 																		<td><?=$data['nama']?></td>
@@ -78,7 +84,7 @@
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="dataTables_length">
-                          <form id="paging" action="<?= site_url("permohonan_surat_admin")?>" method="post" class="form-horizontal">
+                          <form id="paging" action="<?= site_url("{$this->controller}")?>" method="post" class="form-horizontal">
                             <label>
                               Tampilkan
                               <select name="per_page" class="form-control input-sm" onchange="$('#paging').submit()">
@@ -97,19 +103,19 @@
                         <div class="dataTables_paginate paging_simple_numbers">
                           <ul class="pagination">
                             <?php if ($paging->start_link): ?>
-                              <li><a href="<?=site_url("permohonan_surat_admin/index/$paging->start_link/$o")?>" aria-label="First"><span aria-hidden="true">Awal</span></a></li>
+                              <li><a href="<?=site_url("{$this->controller}/index/$paging->start_link/$o")?>" aria-label="First"><span aria-hidden="true">Awal</span></a></li>
                             <?php endif; ?>
                             <?php if ($paging->prev): ?>
-                              <li><a href="<?=site_url("permohonan_surat_admin/index/$paging->prev/$o")?>" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                              <li><a href="<?=site_url("{$this->controller}/index/$paging->prev/$o")?>" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
                             <?php endif; ?>
                             <?php for ($i=$paging->start_link;$i<=$paging->end_link;$i++): ?>
-                              <li <?=jecho($p, $i, "class='active'")?>><a href="<?= site_url("permohonan_surat_admin/index/$i/$o")?>"><?= $i?></a></li>
+                              <li <?=jecho($p, $i, "class='active'")?>><a href="<?= site_url("{$this->controller}/index/$i/$o")?>"><?= $i?></a></li>
                             <?php endfor; ?>
                             <?php if ($paging->next): ?>
-                              <li><a href="<?=site_url("permohonan_surat_admin/index/$paging->next/$o")?>" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                              <li><a href="<?=site_url("{$this->controller}/index/$paging->next/$o")?>" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
                             <?php endif; ?>
                             <?php if ($paging->end_link): ?>
-                              <li><a href="<?=site_url("permohonan_surat_admin/index/$paging->end_link/$o")?>" aria-label="Last"><span aria-hidden="true">Akhir</span></a></li>
+                              <li><a href="<?=site_url("{$this->controller}/index/$paging->end_link/$o")?>" aria-label="Last"><span aria-hidden="true">Akhir</span></a></li>
                             <?php endif; ?>
                           </ul>
                         </div>
