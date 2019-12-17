@@ -116,5 +116,23 @@
 		return $data;
 	}
 
+	public function list_data_status($id)
+	{
+		$this->db->select('id, status');
+		$this->db->from('permohonan_surat');
+		$this->db->where('id', $id);
+
+		return $this->db->get()->row_array();
+	}
+
+	public function update_status($id, $data)
+	{
+		$this->db->where('id', $id);
+		$outp = $this->db->update('permohonan_surat', $data);
+
+		if ($outp) $_SESSION['success'] = 1;
+		else $_SESSION['success'] = -1;
+	}
+
 }
 ?>
