@@ -67,6 +67,7 @@
 																		<td nowrap>
 																			<a href="<?=site_url("{$this->controller}/periksa/$p/$o/$data[id]")?>" class="btn bg-green btn-flat btn-sm"  title="Periksa"><i class="fa fa-question-circle"></i></a>
 																			<a href="#" data-href="<?=site_url("{$this->controller}/delete/$p/$o/$data[id]")?>" class="btn bg-maroon btn-flat btn-sm"  title="Hapus" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-trash-o"></i></a>
+																			<a href="<?= site_url("{$this->controller}/edit_status/$data[id]")?>" title="Ubah Status Permohonan" data-remote="false" data-toggle="modal" data-target="#modalBox" data-title="Ubah Status Permohonan" class="btn bg-orange btn-flat btn-sm"><i class="fa fa-edit"></i></a>
 																		</td>
 																		<td nowrap><?=$data['nik'];?></td>
 																		<td><?=$data['nama']?></td>
@@ -166,4 +167,3 @@
 		</form>
 	</section>
 </div>
-
